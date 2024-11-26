@@ -18,6 +18,7 @@ const onClickAdd =()=>{
     // button(完了)タグ生成
     const completeButton = document.createElement("button");
     completeButton.innerText = "完了";
+    
     completeButton.addEventListener("click", () => {
         // 押された完了ボタンの親にあるliタグを、未完了リストから完了リストへ移動
         const moveTarget = completeButton.closest("li");
@@ -29,6 +30,13 @@ const onClickAdd =()=>{
         const returnButton = document.createElement("button");
         div.appendChild(returnButton)
         returnButton.innerText = "戻す";
+        // 戻すボタンを押したら未完了リストへ移動
+        returnButton.addEventListener("click", ()=> {
+            document.getElementById("incomplete-list").appendChild(moveTarget);
+            div.appendChild(completeButton);
+            div.appendChild(deleteButton);
+            div.removeChild(returnButton);
+        })
     })
 
     // button(削除)タグ生成
